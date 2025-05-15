@@ -1,26 +1,20 @@
+
+
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.firefox.service import Service
-import time
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service  # ✅ Import Service
 
-# Your search URL
-url = "https://www.google.com/search?q=beautifulsoup"
+url = "https://www.avantorsciences.com/fr/fr/search/"
 
-# Setup Firefox options (optional)
+# Set up ChromeOptions
 options = Options()
-options.add_argument('--headless')  # Uncomment this line to run in headless mode
+options.binary_location = '/home/aaferyad/goinfre/chrome-linux64/chrome'  # ✅ Your custom Chrome binary
 
-# Path to your geckodriver binary
-service = Service("/home/aaferyad/goinfre/geckodriver")  # ✅ Confirm this is correct and executable
+# Set up ChromeDriver service
+service = Service("/path/to/chromedriver")  # ✅ Replace with actual path to chromedriver
 
-# Create the WebDriver
-driver = webdriver.Firefox(service=service, options=options)
+# Start the driver with service and options
+driver = webdriver.Chrome(service=service, options=options)
 
-# Open the URL
+# Navigate to your URL
 driver.get(url)
-
-# Wait to see results (for testing)
-time.sleep(10)
-
-# Close the browser
-driver.quit()
